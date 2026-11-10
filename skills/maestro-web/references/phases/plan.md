@@ -23,4 +23,4 @@ Numbered task list with files, done-condition, and test per task; mark Fast-tier
 A task list exists (plan file or state checklist).
 
 ## Tier
-Deep. At exit the big switch happens: Deep → Balanced for build. Save state, recommend a context reset, then `maestro resume`.
+From `models.md` → Budget modes (Deep in balanced/quality, Balanced in thrift). At exit the biggest saving usually happens: switch down to the build tier for the budget, save state, recommend a context reset, then `maestro resume`.

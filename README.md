@@ -36,7 +36,7 @@ flowchart LR
   Q --> S["7 Ship (Fast)"]
 ```
 
-Size decides which phases run: `tweak` = build → qa; `small` = light discover, design, light plan, build, qa, ship; `project` = all. With superpowers installed, design and architect fold into the brainstorming spec, so there are no duplicate gates.
+Size decides which phases run: `tweak` = build → qa → merge; `small` = light discover, design, light architect (framework + host), light plan, build, qa, ship; `project` = all. With superpowers installed, design and architect fold into the brainstorming spec, so there are no duplicate gates.
 
 ## Commands
 

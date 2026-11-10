@@ -9,8 +9,8 @@ Learn what is being built, on which agent, with which models and budget, and how
 ## Steps
 1. Capture the idea in one line from the user's words. If unclear, ask one open question: what should a visitor be able to do?
 2. Detect the agent from environment cues (tool names, slash commands, config dirs such as `.claude/`, `.cursor/`, `.opencode/`). If unsure, ask once.
-3. Load `references/models.md` and `references/models-catalog.md`. Show the catalog entries this agent exposes as a short checklist and ask: "Which of these can you pick? Add any I missed." Map each to a tier (catalog or name cues), confirm, record `models:` in state. Ask whether subagents can use a different model if `models.md` → Subagents is unclear for this agent.
-4. Ask budget once: `thrift` / `balanced` (default) / `quality`, one line each on what it changes.
+3. Load `references/models.md` and `references/models-catalog.md`. Show the catalog entries this agent exposes as a short checklist and ask: "Which of these can you pick? Add any I missed." Map each to a tier (catalog or name cues), confirm, record `models:` in state (apply `models.md` → Missing tiers; with one model, skip mapping, confirm, record `single`). Ask whether subagents can use a different model if `models.md` → Subagents is unclear for this agent.
+4. Ask budget once: `thrift` / `balanced` (default) / `quality`, one line each on what it changes. For `tweak`, default `balanced` without asking.
 5. Propose size (`tweak` / `small` / `project`) with one line of reason and the resulting phase list. User may override.
 6. Check whether superpowers is installed. If yes, tell the agent's brainstorming run to include `Design direction` and `Stack` sections in the spec (see `SKILL.md` → Coexistence).
 7. Offer `ponytail` and `caveman` once as optional token savers (catalog → build).
@@ -26,4 +26,4 @@ Not applicable.
 `.maestro/state.md` exists with project, size, budget, agent, subagents, models, phase list, next step.
 
 ## Tier
-Current model. Do not recommend a switch before the first phase unless the current model is Fast and the next phase is discover (then recommend Deep).
+Current model. At exit, if the current model's tier is below the first phase's tier (budget table), emit a switch; otherwise a `⟲` line.

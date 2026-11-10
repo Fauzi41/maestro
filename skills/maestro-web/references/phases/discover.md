@@ -11,7 +11,7 @@ Intake done. For `tweak`, skip this phase.
 2. Otherwise: use grill-me / brainstorming if installed, else the Fallback. Cover: why now, users, primary action, key pages or features, goals, non-goals, anti-goals, prior art they love or hate.
 3. Content sites: use site-architecture and copywriting if installed to settle pages and the hero message.
 4. `small` size: keep it light — one page of spec, ≤ 5 questions.
-5. Save the spec (superpowers path if present, else `docs/spec.md`). Get explicit approval.
+5. Save the spec (superpowers path if present, else `docs/spec.md`). Get explicit approval (with superpowers, its approval counts; don't re-ask).
 6. Update state: decisions (≤ 10 one-liners), `artifacts: spec`, phases `discover ✓`. If superpowers folded design and architect in, mark those ✓ too, pointing at the spec sections.
 
 ## Skills
@@ -24,4 +24,4 @@ Ask one question at a time, open first, then concrete options with your pick. Pr
 Approved spec path recorded in state.
 
 ## Tier
-Deep. At exit: next phase is design (Deep for direction) → usually no switch; if folded, next is plan (Deep) → no switch. Recommend a context reset if the discussion was long.
+Deep (all budgets). At exit, next tier comes from `models.md` → Budget modes; switch or `⟲` per `SKILL.md` → Switch rules.

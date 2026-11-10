@@ -4,7 +4,7 @@
 Choose the stack and its shape once, with reasons, because these choices are the most expensive to undo.
 
 ## Entry
-Approved spec (and design if not skipped). If superpowers folded architect into the spec (`Stack` section exists), mark ✓ and go to plan without a stop. Existing repo: build on its stack; only record what is new.
+Approved spec (and design if not skipped). If superpowers folded architect into the spec (`Stack` section exists), mark ✓, run step 4 only, and go to plan. `small` size: architect (light) — framework + host (+ CMS if any) as 2–3 lines in state, then step 4. Existing repo: build on its stack; only record what is new.
 
 ## Steps
 1. Decide, one line of reason each: framework, rendering (static / SSR / SPA), styling, data store, auth, hosting, key libraries. Default to the boring, well-documented option the user already knows.
@@ -23,4 +23,4 @@ Fill the step 1 list yourself, state each as your call with its reason, and ask 
 `docs/stack.md` (or spec section) approved; stack skills installed or declined.
 
 ## Tier
-Deep. Next is plan (Deep) → no switch; recommend a context reset if the session is long.
+Deep (all budgets). At exit, next tier from `models.md` → Budget modes; switch or `⟲` per `SKILL.md` → Switch rules.
