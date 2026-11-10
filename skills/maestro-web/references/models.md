@@ -8,23 +8,11 @@ Brand-free rules. Concrete names live only in `models-catalog.md`.
 - **Balanced** — strong coder at mid cost. Build, review, applying a design.
 - **Fast** — cheapest and quickest. Boilerplate, renames, file scans, summaries, ship chores.
 
-Reasoning-effort knobs (low/medium/high) can stand in for the next tier down on the same model. Mention it at a boundary only when the user has ≥ 2 tiers mapped; never in one-model mode.
+Reasoning-effort knobs (low/medium/high) can stand in for the next tier down on the same model. Mention it at a boundary only when ≥ 2 effective tiers exist after collapse; never when `single`.
 
 Several models in one tier: ask once which they prefer; default to the user's pick, then vision-capable (👁) for design work. Record the choice.
 
-## Budget modes
-
-| Phase | thrift | balanced (default) | quality |
-|---|---|---|---|
-| discover | Deep | Deep | Deep |
-| design | Balanced | Deep → Balanced | Deep |
-| architect | Deep | Deep | Deep |
-| plan | Balanced | Deep | Deep |
-| build | Fast (Balanced subagents/escalation) | Balanced (+ Fast subagents) | Balanced only |
-| qa | Balanced | Balanced (Deep for hard bugs) | Deep |
-| ship | Fast | Fast | Balanced |
-
-Thrift build without subagents: run on Fast; escalate per Switch rule 1 (2 failures) or at the qa boundary.
+The per-phase budget table lives in `SKILL.md` → Phase map. This file is loaded only at intake, `maestro models`, and `maestro budget`; at intake record the agent's `switch-cmd:` and `reset-cmd:` in state so later switches need no reload.
 
 ## Missing tiers
 
@@ -32,7 +20,8 @@ Collapse to the effective tier and use it in the switch message:
 - no Fast → Balanced.
 - no Deep → Balanced.
 - no Balanced → Deep, except in `thrift` budget → Fast (escalate to Deep on 2 failures).
-- one model only → mark `single` in state; no switch or effort advice ever, only context hygiene; no delegation.
+- any other gap (e.g., only Fast) → nearest available tier.
+- one effective tier after collapse (one model, or several models of the same tier) → mark `single` in state: no switch or effort advice ever, only context hygiene, no tier delegation.
 
 ## How to switch
 
@@ -66,10 +55,10 @@ Delegate Fast-tier work only where the agent can pin a model per subagent:
 | Antigravity | subagent invocation with `Model:` (`flash_lite`, `flash`, `pro`, `inherit`) |
 | Cursor | `.cursor/agents/<name>.md` frontmatter `model:` (`fast`, `inherit`, or id) |
 | OpenCode | agent `model:` in `.opencode/agents/<name>.md` or `opencode.json` (`provider/model`) |
-| Codex | configured worker/subagent models (check the user's config) |
-| Others | no model-pinned subagents assumed → `subagents: no` in state |
+| Codex | configured worker/subagent models — ask once, don't assume |
+| Gemini CLI, Copilot, Windsurf, others | model-pinned subagents not assumed → ask once; default `subagents: no` |
 
-If unsure, ask once and record `subagents: yes|no`. Creating an agent file (`.claude/agents/…`, `.cursor/agents/…`, `.opencode/agents/…`) needs one-time user approval. Do not delegate when the Fast model is the same as the main model.
+`subagents:` means model-pinned subagents (tier delegation). Plain same-model subagents (e.g., superpowers' subagent-driven-development) are a separate capability: note it as `spawn: yes|no` in the `agent:` line. Creating an agent file (`.claude/agents/…`, `.cursor/agents/…`, `.opencode/agents/…`) needs one-time user approval. Delegate only when the effective Fast tier differs from the current effective tier.
 
 ## Compatible endpoints
 
@@ -77,8 +66,8 @@ Many agents accept any Anthropic- or OpenAI-compatible endpoint. Chinese and ope
 
 ## Unknown models
 
-When the user lists a model that is not in the catalog:
+When the user lists a model that is not in the catalog, split its name into tokens (on space - _ . /), drop the vendor/family word (anything matching a catalog Vendor or family name), then match whole tokens:
 
-Name cues: opus/pro/max/ultra/thinking/reasoner/fable → Deep; sonnet/plus/standard/coder (non-mini) → Balanced; haiku/flash/mini/nano/lite/air/turbo/small → Fast. Always confirm with the user and record in state.
+Name cues: opus/pro/max/ultra/thinking/reasoner/fable → Deep; sonnet/plus/standard/coder → Balanced; haiku/flash/mini/nano/lite/air/turbo/small → Fast. Always confirm with the user and record in state.
 
-No cue → ask: "Is <model> your strongest, everyday, or cheapest option?" and map to Deep / Balanced / Fast.
+Cues from two tiers, or no cue → ask: "Is <model> your strongest, everyday, or cheapest option?" and map to Deep / Balanced / Fast.

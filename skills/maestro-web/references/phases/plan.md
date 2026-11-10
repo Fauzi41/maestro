@@ -10,7 +10,7 @@ Spec approved; design and architect done or folded. For `tweak`, skip: write an 
 1. If superpowers is installed: run writing-plans and accept its plan, even for `small` (it will be short).
 2. Otherwise: write `docs/plan.md`. Each task: files, what changes, done-condition, test (logic) or check (styling).
 3. `small` size: plan (light) — ≤ ~10 tasks. `project`: as many as needed, each ≤ ~1 hour of work.
-4. Mark which tasks are Fast-tier (boilerplate, config, copy, renames) so build can delegate them.
+4. Without superpowers: mark Fast-tier tasks (`[fast]`) in the plan; with superpowers: list their task numbers in `fast-tasks:` in state instead of editing its plan.
 5. Update state: `artifacts: plan`, `plan ✓`, next = first task.
 
 ## Skills
@@ -23,4 +23,4 @@ Numbered task list with files, done-condition, and test per task; mark Fast-tier
 A task list exists (plan file or state checklist).
 
 ## Tier
-From `models.md` → Budget modes (Deep in balanced/quality, Balanced in thrift). At exit the biggest saving usually happens: switch down to the build tier for the budget, save state, recommend a context reset, then `maestro resume`.
+From `SKILL.md` → Phase map (Deep in balanced/quality, Balanced in thrift). At exit the biggest saving usually happens: switch down to the build tier for the budget, save state, recommend a context reset, then `maestro resume`.

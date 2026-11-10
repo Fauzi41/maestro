@@ -15,7 +15,8 @@ Goal: spend tokens on decisions and code, not on talk or re-reading.
 
 - Search (grep, glob, symbol search) before opening files. Read line ranges, not whole files.
 - Load only the current phase's reference file. Never load all references "to be safe".
-- Load `models.md` and `models-catalog.md` only at intake, on `maestro models`, or when composing a switch.
+- Load `models.md` and `models-catalog.md` only at intake, `maestro models`, or `maestro budget`.
+- Load only the `## <phase>` section of `skills-catalog.md`, not the whole file.
 - Prefer summaries from tools over dumping logs; tail long output.
 
 ## Context hygiene

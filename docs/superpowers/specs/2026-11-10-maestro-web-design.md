@@ -110,11 +110,11 @@ Each phase file defines: purpose, entry condition, steps, skills to use (from ca
 | 7 | Ship | merged + deployed URL (or release notes) | finishing-a-development-branch, seo-audit, host-specific deploy skills | Fast |
 
 **Sizing at intake** (stated to the user, overridable):
-- *Tweak* (change to existing site): Build → QA.
-- *Small* (landing page, single-page tool): Discover (light) → Design → Plan (light) → Build → QA → Ship.
+- *Tweak* (change to existing site): Build → QA → Ship (step 1 only: merge/PR).
+- *Small* (landing page, portfolio, docs site, blog on a hosted CMS): Discover (light) → Design → Architect (light: framework + host, 2–3 lines in state) → Plan (light) → Build → QA → Ship.
 
-*(Maestro's call)* Build always runs from a task list. *Plan (light)* = a short checklist (≤ ~10 tasks); without superpowers it lives in the `.maestro/state.md` "next" area or a `docs/plan.md`; with superpowers it is whatever short plan writing-plans produces (accepted, not fought). *Tweak* builds from an inline 1–5 item checklist stated in chat and recorded in state; with superpowers, its small-change path applies. Build's entry condition: a task list exists.
-- *Project* (multi-page app, auth/data): all phases.
+*(Maestro's call)* Build always runs from a task list. *Plan (light)* = a short checklist (≤ ~10 tasks); without superpowers it lives in the `.maestro/state.md` "next" area or a `docs/plan.md`; with superpowers it is whatever short plan writing-plans produces (accepted, not fought). *Tweak* builds from an inline 1–5 item checklist stated in chat and recorded in state; with superpowers, its small-change path applies. Build's entry condition: a task list exists. *Architect (light)* records framework + host so Build and Ship know which stack skills and deploy target to use.
+- *Project* (multi-page app, auth/data, self-hosted CMS/admin): all phases.
 
 ### 6.3 Model tiers
 

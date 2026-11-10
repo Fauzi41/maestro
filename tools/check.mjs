@@ -9,7 +9,7 @@ const SKILL = join(ROOT, "skills", "maestro-web");
 const REF = join(SKILL, "references");
 const PHASES = ["intake", "discover", "design", "architect", "plan", "build", "qa", "ship"];
 const COMMANDS = ["`maestro`", "maestro resume", "maestro status", "maestro skip <phase>", "maestro models", "maestro budget <thrift|balanced|quality>"];
-const BANNED = ["opus", "sonnet", "haiku", "gpt-", "gemini", "grok", "deepseek", "qwen", "kimi", "glm", "minimax", "doubao", "llama", "mistral"];
+const BANNED = ["opus", "sonnet", "haiku", "fable", "gpt-", "gemini", "grok", "deepseek", "qwen", "kimi", "glm", "minimax", "doubao", "llama", "mistral", "magistral", "devstral", "codestral"];
 const AGENT_NAMES = [/gemini cli/gi, /qwen code/gi, /kimi cli/gi];
 const VENDORS = ["Anthropic", "OpenAI", "Google", "xAI", "Mistral", "Meta", "DeepSeek", "Alibaba Qwen", "Moonshot Kimi", "Zhipu", "MiniMax", "ByteDance", "Local"];
 const AGENTS = ["Claude Code", "Antigravity", "Cursor", "Codex", "Gemini CLI", "Copilot", "Windsurf", "OpenCode", "Cline", "Trae", "Qwen Code", "Kimi CLI"];
@@ -44,12 +44,15 @@ const skillPath = join(SKILL, "SKILL.md");
 
 check("skill:frontmatter", () => {
   const { fm } = frontmatter(need(skillPath));
+  const keys = fm.split("\n").filter((l) => /^[a-zA-Z_-]+:/.test(l)).map((l) => l.split(":")[0].trim());
+  if (keys.join(",") !== "name,description") return `frontmatter keys must be name,description (got ${keys.join(",")})`;
   if (!/^name: maestro-web$/m.test(fm)) return "name must be maestro-web";
-  const d = fm.match(/^description:\s*(.+)$/m);
+  const d = fm.match(/^description:\s*([\s\S]+?)$/m);
   if (!d) return "no description";
-  const desc = d[1].replace(/^["']|["']$/g, "");
+  const desc = d[1].replace(/^["'>|-]+\s*|\s*["']$/g, "").replace(/\s+/g, " ").trim();
   if (desc.length > 300) return `description ${desc.length} > 300 chars`;
   if (!/maestro/i.test(desc)) return "description must mention maestro";
+  if (!/web/i.test(desc)) return "description must mention web";
 });
 check("skill:length", () => { const n = lines(frontmatter(need(skillPath)).body); if (n > 150) return `body ${n} > 150 lines`; });
 check("skill:links", () => {
@@ -60,12 +63,25 @@ check("skill:links", () => {
     const targets = r.includes("<id>") ? PHASES.map((p) => r.replace("<id>", p)) : [r];
     for (const t of targets) if (!existsSync(join(SKILL, t))) missing.push(t);
   }
+  for (const p of PHASES) {
+    const ps = read(join(REF, "phases", `${p}.md`)) || "";
+    for (const m of ps.matchAll(/`([\w-]+\.md)`/g)) {
+      if (m[1] === "SKILL.md" && !existsSync(skillPath)) missing.push(m[1]);
+      else if (m[1] !== "SKILL.md" && ! ["spec.md", "design.md", "stack.md", "plan.md", "state.md"].includes(m[1]) && !existsSync(join(REF, m[1]))) missing.push(`${p}: ${m[1]}`);
+    }
+  }
   if (!refs.length) return "no references linked";
   if (missing.length) return `missing ${missing.join(", ")}`;
 });
 check("skill:commands", () => { const s = need(skillPath); const m = COMMANDS.filter((c) => !s.includes(c)); if (m.length) return `missing ${m.join(", ")}`; });
+check("skill:switch-format", () => {
+  const s = need(skillPath);
+  for (const line of ["⇄ SWITCH →", "Phase: <from> → <to> · why:", "<Agent>:", "Context: state saved →"]) {
+    if (!s.includes(line)) return `missing switch format line: ${line}`;
+  }
+});
 check("skill:no-model-names", () => {
-  const files = [skillPath, join(REF, "models.md"), ...PHASES.map((p) => join(REF, "phases", `${p}.md`))];
+  const files = [skillPath, join(SKILL, "templates", "state.md"), join(REF, "models.md"), ...PHASES.map((p) => join(REF, "phases", `${p}.md`))];
   const hits = [];
   for (const f of files) {
     const s = read(f); if (s === null) continue;

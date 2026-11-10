@@ -19,7 +19,7 @@ Examples per tier, used at intake to offer a checklist. Names drift monthly: tru
 | Local (Ollama, LM Studio) | — | rarely Deep; largest open model you can run | open Qwen / DeepSeek / GLM / Devstral | small open models | varies | OpenCode, Cline/Roo/Kilo, Continue, compatible endpoint |
 
 Agent-native picks:
-- Antigravity subagents: `pro` → Deep/Balanced, `flash` → Balanced/Fast, `flash_lite` → Fast.
+- Antigravity subagents: `pro` → Deep, `flash` → Balanced, `flash_lite` → Fast (if the user has nothing stronger, `pro` and `flash` move up a tier).
 - Claude Code aliases: `fable`, `opus` → Deep · `sonnet` → Balanced · `haiku` → Fast.
 - Cursor and Windsurf also offer their own in-house fast models (Composer, SWE family) → usually Fast/Balanced.
 

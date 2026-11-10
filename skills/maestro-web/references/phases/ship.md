@@ -7,7 +7,7 @@ Get it live and finish the branch cleanly.
 QA exit reached. `tweak`: do step 1 only, then step 5.
 
 ## Steps
-1. Finish the branch: offer merge or PR (finishing-a-development-branch if installed). Never push or deploy without asking.
+1. Finish the branch: offer merge or PR (finishing-a-development-branch if installed; if the user already merged during build, mark done). Never push or deploy without asking.
 2. SEO basics for public sites: titles, meta descriptions, one h1, alt text, sitemap, robots, OG image, structured data where it fits (seo-audit, schema if installed).
 3. Deploy with the host recorded in state (architect or architect-light), using the host's skill or CLI if available. Confirm env vars and secrets are set by the user, never printed.
 4. Smoke-test the live URL (home, primary action, 404).
@@ -23,4 +23,4 @@ Merge or PR on approval; SEO checklist from step 2; deploy via the host's CLI; s
 Merged and deployed URL, or release notes, recorded in state.
 
 ## Tier
-From `models.md` → Budget modes (Fast; Balanced in `quality`). Deploy failures that need reasoning → escalate one tier.
+From `SKILL.md` → Phase map (Fast; Balanced in `quality`). Deploy failures that need reasoning → escalate one tier.

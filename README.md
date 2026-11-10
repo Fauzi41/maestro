@@ -5,7 +5,7 @@
 `maestro-web` guides an AI coding agent through a whole web project, from idea to live URL. You bring the idea; it runs the phases, picks the right skills, and tells you **when to switch models and reset context** so you don't burn premium tokens on trivial work, or use a weak model on decisions that matter.
 
 - **Captures the idea** and sizes the work (`tweak`, `small`, `project`).
-- **Maps your models to tiers** (Deep / Balanced / Fast), across 13 vendors including Chinese labs (DeepSeek, Qwen, Kimi, GLM, MiniMax, Doubao-Seed) and local models.
+- **Maps your models to tiers** (Deep / Balanced / Fast), across 12 vendors including Chinese labs (DeepSeek, Qwen, Kimi, GLM, MiniMax, Doubao-Seed), plus local models.
 - **Finds and chains skills** per phase (superpowers, grill-me, taste-skill, ui-ux-pro-max, and more) and installs them **only with your approval**.
 - **Tells you exactly when to switch** with the command for your agent, and saves state so a fresh chat resumes in ~30 lines.
 

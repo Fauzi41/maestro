@@ -23,4 +23,4 @@ Fill the step 1 list yourself, state each as your call with its reason, and ask 
 `docs/stack.md` (or spec section) approved; stack skills installed or declined.
 
 ## Tier
-Deep (all budgets). At exit, next tier from `models.md` → Budget modes; switch or `⟲` per `SKILL.md` → Switch rules.
+Deep (all budgets). At exit, next tier from `SKILL.md` → Phase map; switch or `⟲` per `SKILL.md` → Switch rules.

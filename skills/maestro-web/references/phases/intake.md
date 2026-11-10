@@ -9,12 +9,10 @@ Learn what is being built, on which agent, with which models and budget, and how
 ## Steps
 1. Capture the idea in one line from the user's words. If unclear, ask one open question: what should a visitor be able to do?
 2. Detect the agent from environment cues (tool names, slash commands, config dirs such as `.claude/`, `.cursor/`, `.opencode/`). If unsure, ask once.
-3. Load `references/models.md` and `references/models-catalog.md`. Show the catalog entries this agent exposes as a short checklist and ask: "Which of these can you pick? Add any I missed." Map each to a tier (catalog or name cues), confirm, record `models:` in state (apply `models.md` → Missing tiers; with one model, skip mapping, confirm, record `single`). Ask whether subagents can use a different model if `models.md` → Subagents is unclear for this agent.
-4. Ask budget once: `thrift` / `balanced` (default) / `quality`, one line each on what it changes. For `tweak`, default `balanced` without asking.
-5. Propose size (`tweak` / `small` / `project`) with one line of reason and the resulting phase list. User may override.
-6. Check whether superpowers is installed. If yes, tell the agent's brainstorming run to include `Design direction` and `Stack` sections in the spec (see `SKILL.md` → Coexistence).
-7. Offer `ponytail` and `caveman` once as optional token savers (catalog → build).
-8. Write `.maestro/state.md` from `templates/state.md`. Add `.maestro/` to `.gitignore` only if the user wants state kept out of git.
+3. Load `references/models.md`, `references/models-catalog.md`, and `references/token-rules.md`. Show the catalog entries this agent exposes as a short checklist and ask: "Which of these can you pick? Add any I missed." Map each to a tier (catalog or name cues), confirm, record `models:`, `switch-cmd:`, and `reset-cmd:` in state (apply `models.md` → Missing tiers; if one effective tier, mark `single`). Record `subagents: yes|no` (model-pinned) and `spawn: yes|no` (plain subagents).
+4. In one batched message: ask budget (`thrift` / `balanced` default / `quality`), propose size (`tweak` / `small` / `project`) with its phase list, and offer `ponytail` + `caveman` as optional token savers. For `tweak`, default `balanced` and write the 1–5 item `checklist:` now.
+5. Check whether superpowers is installed (brainstorming + writing-plans both available). If yes, tell the agent's brainstorming run to include `Design direction` (with tokens) and `Stack` sections in the spec (see `SKILL.md` → Coexistence).
+6. Write `.maestro/state.md` from `templates/state.md`. Add `.maestro/` to `.gitignore` only if the user wants state kept out of git.
 
 ## Skills
 None required.
@@ -26,4 +24,4 @@ Not applicable.
 `.maestro/state.md` exists with project, size, budget, agent, subagents, models, phase list, next step.
 
 ## Tier
-Current model. At exit, if the current model's tier is below the first phase's tier (budget table), emit a switch; otherwise a `⟲` line.
+Current model. At exit, if not `single` and the current model's tier is below the first phase's tier (`SKILL.md` → Phase map), emit a switch; otherwise a `⟲` line.
